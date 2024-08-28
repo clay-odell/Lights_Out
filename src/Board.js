@@ -77,24 +77,27 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   }
   //Make table board
   return (
-    <>
-      <table>
-        <tbody>
-          {board.map((row, y) => (
-            <tr key={y}>
-              {row.map((cell, x) => (
-                <Cell
-                  key={`${y}=${x}`}
-                  isLit={cell}
-                  flipCellsAroundMe={() => flipCellsAround(`${y}-$[x]`)}
-                  />
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
-  )
+    <table className="Board">
+      <tbody>
+        {board.map((row, y) => (
+          <tr key={y}>
+            {row.map((cell, x) => (
+              <Cell
+                key={`${y}-${x}`}
+                isLit={cell}
+                flipCellsAroundMe={() => flipCellsAround(`${y}-${x}`)}
+              />
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+Board.defaultProps = {
+  nrows: 5,
+  ncols: 5, 
+  chanceLightStartsOn: 0.25
 }
 
 export default Board;
